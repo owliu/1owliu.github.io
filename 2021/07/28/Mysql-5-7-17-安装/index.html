@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/07/28/RU9HBh4YVT67Mfi.png">
 <meta property="article:published_time" content="2021-07-28T08:17:49.000Z">
-<meta property="article:modified_time" content="2021-07-28T08:18:42.588Z">
+<meta property="article:modified_time" content="2021-07-28T08:21:44.702Z">
 <meta property="article:author" content="Ow Liu">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -111,12 +111,13 @@
 <h4 id="更改-usr-local-mysql-路径的权限"><a href="#更改-usr-local-mysql-路径的权限" class="headerlink" title="更改/usr/local/mysql/路径的权限"></a>更改/usr/local/mysql/路径的权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; chown -R /usr/lcoal/mysql</span><br><span class="line">bash&gt; chgrp -R /usr/lcaol/mysql</span><br></pre></td></tr></table></figure>
 <h4 id="初始化初始化mysql服务"><a href="#初始化初始化mysql服务" class="headerlink" title="初始化初始化mysql服务"></a>初始化初始化mysql服务</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; cd /usr/local/mysql/bin</span><br><span class="line">bash&gt; ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data--basedir=/usr/local/mysq</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2021/07/28/RU9HBh4YVT67Mfi.png" alt="init_mysqld_pwd"></p>
+<p><img src="https://i.loli.net/2021/07/28/RU9HBh4YVT67Mfi.png" alt="init_mysqld"></p>
+<p>Note: 请注意保存好初始密码</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://owliu.github.io/2021/07/28/Mysql-5-7-17-%E5%AE%89%E8%A3%85/" data-id="ckrn7v1qh0000p4w0fdbng5bd" data-title="Mysql-5.7.17 安装" class="article-share-link">Share</a>
+      <a data-url="https://owliu.github.io/2021/07/28/Mysql-5-7-17-%E5%AE%89%E8%A3%85/" data-id="ckrn7z1ds0000qww03atb6h9m" data-title="Mysql-5.7.17 安装" class="article-share-link">Share</a>
       
       
       
