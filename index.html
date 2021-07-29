@@ -93,26 +93,32 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h4 id="下载Mysql预编译二进制tar包"><a href="#下载Mysql预编译二进制tar包" class="headerlink" title="下载Mysql预编译二进制tar包"></a>下载Mysql预编译二进制tar包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h4 id="解压Mysql预编译二进制tar包"><a href="#解压Mysql预编译二进制tar包" class="headerlink" title="解压Mysql预编译二进制tar包"></a>解压Mysql预编译二进制tar包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; tar zxvf /path/to/mysql-VERSION-OS.tar.gz</span><br></pre></td></tr></table></figure>
+        <h4 id="下载-mysql-预编译二进制tar包"><a href="#下载-mysql-预编译二进制tar包" class="headerlink" title="下载 mysql 预编译二进制tar包"></a>下载 mysql 预编译二进制tar包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">Mysql-Download</a></p>
+<h4 id="解压-mysql-预编译二进制tar包"><a href="#解压-mysql-预编译二进制tar包" class="headerlink" title="解压 mysql 预编译二进制tar包"></a>解压 mysql 预编译二进制tar包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; tar -zxvf /path/to/mysql-VERSION-OS.tar.gz</span><br></pre></td></tr></table></figure>
 
 <h4 id="建立软连接"><a href="#建立软连接" class="headerlink" title="建立软连接"></a>建立软连接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; ln -s full-path-to-mysql-VERSION-OS mysql</span><br></pre></td></tr></table></figure>
 
-<h4 id="添加Mysql用户和组"><a href="#添加Mysql用户和组" class="headerlink" title="添加Mysql用户和组"></a>添加Mysql用户和组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; groupadd mysql</span><br><span class="line"><span class="comment"># 添加mysql组</span></span><br><span class="line">bash&gt; useradd -r -g mysql mysql</span><br><span class="line"><span class="comment"># 创建系统级账户&#x27;mysql&#x27;并加入&#x27;mysql&#x27;组</span></span><br></pre></td></tr></table></figure>
+<h4 id="添加-mysql-用户和组"><a href="#添加-mysql-用户和组" class="headerlink" title="添加 mysql 用户和组"></a>添加 mysql 用户和组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; groupadd mysql</span><br><span class="line"><span class="comment"># 添加mysql组</span></span><br><span class="line">bash&gt; useradd -r -g mysql mysql</span><br><span class="line"><span class="comment"># 创建系统级账户&#x27;mysql&#x27;并加入&#x27;mysql&#x27;组</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="创建-data"><a href="#创建-data" class="headerlink" title="创建 ./data/"></a>创建 ./data/</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; mkdir /usr/<span class="built_in">local</span>/mysql/data</span><br><span class="line"><span class="comment"># 在预编译包中这个路径通常是不包含的</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="更改-usr-local-mysql-路径的权限"><a href="#更改-usr-local-mysql-路径的权限" class="headerlink" title="更改/usr/local/mysql/路径的权限"></a>更改/usr/local/mysql/路径的权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; chown -R /usr/lcoal/mysql</span><br><span class="line">bash&gt; chgrp -R /usr/lcaol/mysql</span><br></pre></td></tr></table></figure>
-<h4 id="初始化初始化mysql服务"><a href="#初始化初始化mysql服务" class="headerlink" title="初始化初始化mysql服务"></a>初始化初始化mysql服务</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; cd /usr/local/mysql/bin</span><br><span class="line">bash&gt; ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data--basedir=/usr/local/mysq</span><br></pre></td></tr></table></figure>
+<h4 id="更改-usr-local-mysql-路径的权限"><a href="#更改-usr-local-mysql-路径的权限" class="headerlink" title="更改 /usr/local/mysql/ 路径的权限"></a>更改 /usr/local/mysql/ 路径的权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; chown -R /usr/lcoal/mysql</span><br><span class="line">bash&gt; chgrp -R /usr/lcaol/mysql</span><br></pre></td></tr></table></figure>
+<h4 id="初始化初始化-mysql-服务"><a href="#初始化初始化-mysql-服务" class="headerlink" title="初始化初始化 mysql 服务"></a>初始化初始化 mysql 服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/mysql/bin</span><br><span class="line">bash&gt; ./mysqld --initialize --user=mysql --datadir=/mdata/mysql_test_data --basedir=/usr/<span class="built_in">local</span>/mysql</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.loli.net/2021/07/28/RU9HBh4YVT67Mfi.png" alt="init_mysqld"></p>
-<p>Note: 请注意保存好初始密码</p>
+<p>Note: 注意保存好临时密码</p>
+<h4 id="编辑-my-cnf"><a href="#编辑-my-cnf" class="headerlink" title="编辑 my.cnf"></a>编辑 my.cnf</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bash&gt; cp /usr/<span class="built_in">local</span>/mysql/support-files/my-default.cnf /etc/my.cnf</span><br><span class="line">bash&gt; vim /etc/my.cnf</span><br><span class="line"><span class="comment"># mysqld 启动时会自动加载 /etc/my.cnf   </span></span><br><span class="line"><span class="comment"># 不存在时会使用 mysql/ 下的配置文件 </span></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">user=root</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">prompt=(\\u@\\h) [\\d]&gt;\\</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">port=3306</span><br><span class="line">user=mysql</span><br><span class="line">datadir=/mdata/mysql_test_data</span><br><span class="line">log_error=error.log</span><br></pre></td></tr></table></figure>
+<h4 id="启动-mysqld"><a href="#启动-mysqld" class="headerlink" title="启动 mysqld"></a>启动 mysqld</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加软连接</span></span><br><span class="line">bash&gt; ln -s /usr/<span class="built_in">local</span>/mysql/support-files/mysql.server /etc/init.d/mysql</span><br><span class="line">bash&gt; ln -s /usr/<span class="built_in">local</span>/mysql/bin/mysql /usr/bin/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 mysqld</span></span><br><span class="line">bash&gt; service mysql start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 mysqld 自启动</span></span><br><span class="line">bash&gt; chkconfig --add mysqld</span><br><span class="line">bash&gt; chkconfig --list</span><br><span class="line"><span class="comment"># chkconfig 是一个很老的服务运行级别管理命令了</span></span><br><span class="line"><span class="comment"># 这里使用它也只是为了更加 Generic </span></span><br><span class="line"><span class="comment"># 事实上你可以使用任何方法来管理 mysqld</span></span><br></pre></td></tr></table></figure>
+<h3 id="到这里-MySQL5-7-的安装就已经完成啦！"><a href="#到这里-MySQL5-7-的安装就已经完成啦！" class="headerlink" title="到这里 MySQL5.7 的安装就已经完成啦！"></a><center>到这里 MySQL5.7 的安装就已经完成啦！</center></h3><div class="text clearfix" style="text-align:center;">
+<span style="float:right;"><a href="/2021/07/28/hello-world/" title="Go to Next">Go to Next</a></span><span style="float:left;"><a href="/2021/07/28/Study-Notes-Mysql/" title="Go to catalog">Go to catalog</a></span>
+</div>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://owliu.github.io/2021/07/28/Mysql-5-7-17-%E5%AE%89%E8%A3%85/" data-id="ckrn7z1ds0000qww03atb6h9m" data-title="Mysql-5.7.17 安装" class="article-share-link">Share</a>
+      <a data-url="https://owliu.github.io/2021/07/28/Mysql-5-7-17-%E5%AE%89%E8%A3%85/" data-id="ckro8kta700038sw01g4m7p3r" data-title="Mysql-5.7.17 安装" class="article-share-link">Share</a>
       
       
       
@@ -148,11 +154,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="旨意记录MySQL学习笔记"><a href="#旨意记录MySQL学习笔记" class="headerlink" title="旨意记录MySQL学习笔记"></a>旨意记录MySQL学习笔记</h1><h2 id="Outlined"><a href="#Outlined" class="headerlink" title="Outlined:"></a>Outlined:</h2><h3 id=""><a href="#" class="headerlink" title=""></a><a href="/2021/07/28/hello-world/" title="nihaonihao">nihaonihao</a></h3><h3 id="post-link-Mysql的安装-01Mysql的安装"><a href="#post-link-Mysql的安装-01Mysql的安装" class="headerlink" title="<a href="#">Post not found: Mysql的安装</a>
+        <h3 id="下一份工作Mysql的业务场景很多，开始临阵磨枪吧！多说无益，开干了！"><a href="#下一份工作Mysql的业务场景很多，开始临阵磨枪吧！多说无益，开干了！" class="headerlink" title="下一份工作Mysql的业务场景很多，开始临阵磨枪吧！多说无益，开干了！"></a>下一份工作Mysql的业务场景很多，开始临阵磨枪吧！多说无益，开干了！</h3><h2 id="Outlined"><a href="#Outlined" class="headerlink" title="Outlined:"></a>Outlined:</h2><h3 id=""><a href="#" class="headerlink" title=""></a><a href="/2021/07/28/hello-world/" title="nihaonihao">nihaonihao</a></h3><h3 id="post-link-0-1-Mysql-5-7-17-安装-01Mysql的安装"><a href="#post-link-0-1-Mysql-5-7-17-安装-01Mysql的安装" class="headerlink" title="<a href="#">Post not found: 0_1 Mysql-5-7-17-安装</a>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://owliu.github.io/2021/07/28/Study-Notes-Mysql/" data-id="ckrn7z1dy0001qww08zoa6fq0" data-title="Study Notes Mysql" class="article-share-link">Share</a>
+      <a data-url="https://owliu.github.io/2021/07/28/Study-Notes-Mysql/" data-id="ckro8kt9c00008sw00cn51giv" data-title="Study Notes Mysql" class="article-share-link">Share</a>
       
       
       
@@ -188,12 +194,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><img src="https://i.loli.net/2021/07/28/RU9HBh4YVT67Mfi.png" alt="test"></p>
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://owliu.github.io/2021/07/28/test/" data-id="ckrn7z1e30004qww08g649v0y" data-title="test" class="article-share-link">Share</a>
+      <a data-url="https://owliu.github.io/2021/07/28/test/" data-id="ckro8ktab00048sw041q21dix" data-title="test" class="article-share-link">Share</a>
       
       
       
@@ -246,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://owliu.github.io/2021/07/28/hello-world/" data-id="ckrn7z1e20003qww0gt1cgrf1" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://owliu.github.io/2021/07/28/hello-world/" data-id="ckro8kt9v00018sw0bq0t1gir" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
