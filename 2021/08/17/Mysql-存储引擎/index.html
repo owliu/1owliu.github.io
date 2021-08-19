@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Mysql-存储引擎 | Inl&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Quick Viewing    慢查询日志 错误日志  存储引擎的概念 用来处理数据库的相关 CRUD 操作 每个数据库都有存储引擎的概念 Oracle 是不特别强调存储引擎这个概念的 Mysql 同样 Oracle 堆表 簇表 索引组织表    一些常见的数据库存储引擎   Name License Transactional    MyISAM GPL No   innoDB GPL Yes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql-存储引擎">
+<meta property="og:url" content="https://owliu.github.io/2021/08/17/Mysql-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/index.html">
+<meta property="og:site_name" content="Inl&#39;s Blog">
+<meta property="og:description" content="Quick Viewing    慢查询日志 错误日志  存储引擎的概念 用来处理数据库的相关 CRUD 操作 每个数据库都有存储引擎的概念 Oracle 是不特别强调存储引擎这个概念的 Mysql 同样 Oracle 堆表 簇表 索引组织表    一些常见的数据库存储引擎   Name License Transactional    MyISAM GPL No   innoDB GPL Yes">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-17T13:02:51.000Z">
+<meta property="article:modified_time" content="2021-08-18T19:34:35.734Z">
+<meta property="article:author" content="Ow Liu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Inl's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Inl&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://owliu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Mysql-存储引擎" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/08/17/Mysql-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" class="article-date">
+  <time class="dt-published" datetime="2021-08-17T13:02:51.000Z" itemprop="datePublished">2021-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Mysql-存储引擎
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Quick Viewing  </p>
+<ol>
+<li><a href="#p2">慢查询日志</a></li>
+<li><a href="#p2">错误日志</a></li>
+</ol>
+<h3 id="存储引擎的概念"><a href="#存储引擎的概念" class="headerlink" title="存储引擎的概念"></a>存储引擎的概念</h3><ul>
+<li>用来处理数据库的相关 CRUD 操作</li>
+<li>每个数据库都有存储引擎的概念</li>
+<li>Oracle 是不特别强调存储引擎这个概念的 Mysql 同样</li>
+<li>Oracle<ul>
+<li>堆表</li>
+<li>簇表</li>
+<li>索引组织表</li>
+</ul>
+</li>
+</ul>
+<h4 id="一些常见的数据库存储引擎"><a href="#一些常见的数据库存储引擎" class="headerlink" title="一些常见的数据库存储引擎"></a>一些常见的数据库存储引擎</h4><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>License</th>
+<th>Transactional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MyISAM</td>
+<td>GPL</td>
+<td>No</td>
+</tr>
+<tr>
+<td>innoDB</td>
+<td>GPL</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>tokuDB</td>
+<td>GPL</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>WiredTiger</td>
+<td>GPL</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>LevelDB</td>
+<td>GPL</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>RocksDB</td>
+<td>GPL</td>
+<td>YES</td>
+</tr>
+</tbody></table>
+<h4 id="Mysql存储引擎"><a href="#Mysql存储引擎" class="headerlink" title="Mysql存储引擎"></a>Mysql存储引擎</h4><ul>
+<li><p>官方存储引擎</p>
+<ul>
+<li><p>MyISAM</p>
+<ul>
+<li>MySQL5.1版本之前的默认存储引擎</li>
+<li>堆表数据结构</li>
+<li>表锁设计</li>
+<li>支持数据静态压缩</li>
+<li>不支持事务</li>
+<li>数据容易丢失</li>
+<li>索引容易损坏</li>
+<li>相比起来唯一的优点<ul>
+<li>数据文件可以直接拷贝到另外一台服务器使用</li>
+</ul>
+</li>
+<li>MyISAM 数据文件<ul>
+<li> .MYD</li>
+</ul>
+</li>
+<li>索引文件<ul>
+<li> .MYI</li>
+</ul>
+</li>
+<li>修复错误数据表<ul>
+<li>myisamchk </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>innoDB</p>
+</li>
+<li><p>Memory</p>
+<ul>
+<li>全内存存储的引擎</li>
+<li>数据库重启后数据丢失</li>
+<li>支持哈希索引</li>
+<li>不支持事务  </li>
+<li>Memory 存储引擎是不支持禁用的</li>
+<li>MySQL 内部的排序操作的临时表使用该存储引擎</li>
+<li>参数 max_heap_table_size 决定使用的大小<ul>
+<li>默认的大小：16M</li>
+</ul>
+</li>
+<li>内存放不下的转为MyISAM表<ul>
+<li>注意临时路径空间大小</li>
+</ul>
+</li>
+<li>内除使用为会话级别<ul>
+<li>小心 OOM</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B-tree indexes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Backup/point-in-time recovery (Implemented in the server, rather than in the storage engine.)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Cluster database support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Clustered indexes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Compressed data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Data caches</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Encrypted data</td>
+<td>Yes (Implemented in the server via encryption functions.)</td>
+</tr>
+<tr>
+<td>Foreign key support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Full-text search indexes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Geospatial data type support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Geospatial indexing support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Hash indexes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Index caches</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Locking granularity</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>MVCC</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Replication support (Implemented in the server, rather than in the storage engine.)</td>
+<td>Limited</td>
+</tr>
+<tr>
+<td>Storage limits</td>
+<td>RAM</td>
+</tr>
+<tr>
+<td>T-tree indexes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Update statistics for data dictionary</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Federated</p>
+<ul>
+<li>运行本地访问远程 MySQL 数据库中表的数据</li>
+<li>本地不存储任何数据文件</li>
+<li>类似 Oracle 中的透明网关<ul>
+<li>仅支持 Mysql =&gt; MySQL 的访问</li>
+<li>不支持异构数据库的访问</li>
+</ul>
+</li>
+<li>Federrated 存储引擎默认不开启<ul>
+<li>配置文件：federated</li>
+</ul>
+</li>
+<li>异构数据库远程访问<ul>
+<li>MariaDB ：FederatedX 支持 ODBC 的方式访问异构数据库<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># example:</span><br><span class="line">scheme:<span class="operator">/</span><span class="operator">/</span>user_name[password]<span class="variable">@host</span>_name[:port_num]<span class="operator">/</span>db_name<span class="operator">/</span>tbl_name</span><br><span class="line">CONNECTION<span class="operator">=</span><span class="string">&#x27;mysql://username:password@hostname:port/database/tablename&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">&#x27;T1&#x27;</span>(</span><br><span class="line">    <span class="string">&#x27;A&#x27;</span> <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    <span class="keyword">UNIQUE</span> KEY(<span class="string">&#x27;A&#x27;</span>(<span class="number">30</span>))</span><br><span class="line">) ENGINE <span class="operator">=</span> FEDERATED</span><br><span class="line">CONNECTION<span class="operator">=</span><span class="string">&#x27;MYSQL://ROOT:123@127.0.0.1:3306/TEST/T1&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CSV</p>
+<ul>
+<li>Comma Separated Values</li>
+<li>CSV 是一种标准文件格式</li>
+<li>文件以纯文本形式存储表格数据</li>
+<li>不支持特殊字符</li>
+<li>使用相当广泛<ul>
+<li>mysql 数据库中 slow_log 表和 general_log 表使用的就是用的CSV存储引擎  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(root<span class="variable">@localhost</span>) <span class="operator">&gt;</span> [mysql]<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> slow_log\G</span><br><span class="line">       <span class="keyword">Table</span>: slow_log</span><br><span class="line"><span class="keyword">Create</span> <span class="keyword">Table</span>: <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `slow_log` (</span><br><span class="line"> `start_time` <span class="type">timestamp</span>(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span>(<span class="number">6</span>) <span class="keyword">ON</span> UPDATE <span class="built_in">CURRENT_TIMESTAMP</span>(<span class="number">6</span>),</span><br><span class="line"> `user_host` mediumtext <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"> `query_time` <span class="type">time</span>(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`lock_time` <span class="type">time</span>(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"> `rows_sent` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`rows_examined` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`db` <span class="type">varchar</span>(<span class="number">512</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`last_insert_id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`insert_id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`server_id` <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`sql_text` mediumblob <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`thread_id` <span class="type">bigint</span>(<span class="number">21</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">    ) ENGINE<span class="operator">=</span>CSV <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8 COMMENT<span class="operator">=</span><span class="string">&#x27;Slow log&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Archive</p>
+<ul>
+<li>是无法在 OLTP 类的应用中所使用的，因为它不支持对数据的修改，而OLTP中一定会对数据进行修改，对于一些数据仓库的应用，或者一些特殊的表，如：记录日志类的表或者数据采集的表，由于会要存储大量的数据，就比较适合 Archive 存储引擎，存储空间占用最小。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第三方存储引擎</p>
+<ul>
+<li>TokuDB<ul>
+<li>插入密集型可以用</li>
+</ul>
+</li>
+<li>Spider<ul>
+<li>分布式中间件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://owliu.github.io/2021/08/17/Mysql-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" data-id="cksj2sfe30004x8w04f563b6h" data-title="Mysql-存储引擎" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/08/17/Mysql-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mysql-数据类型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/17/Mysql-%E6%97%A5%E5%BF%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mysql-日志</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/mysql/" style="font-size: 10px;">mysql</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/08/19/Mysql-%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E7%BB%B4%E6%8A%A4/">Mysql-表的创建和维护</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/17/Mysql-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Mysql-数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/17/Mysql-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql-存储引擎</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/17/Mysql-%E6%97%A5%E5%BF%97/">Mysql-日志</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/07/Mysql-%E5%A4%9A%E5%AE%9E%E4%BE%8B/">Mysql-多实例</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Ow Liu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
